@@ -17,6 +17,11 @@ async function main() {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.get('/products', async (req, res) => {
+    const products = await Product.find({}) // find all products
+    res.render('products/index', { products });
+})
+
 app.listen(port, () => {
     console.log(`LISTENING ON PORT ${port}!`)
 })

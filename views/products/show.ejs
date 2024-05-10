@@ -12,7 +12,7 @@
             <p>Price: $<%= selectedProduct.price %></p>
         </li>
         <li>
-            <p>Category: <%= selectedProduct.category %></p>
+            <p>Category: <a href="/products?category=<%= selectedProduct.category %>"><%= selectedProduct.category %></a></p>
         </li>
     </ul>
     <a href="/products/<%= selectedProduct._id %>/edit">EDIT ITEM</a>

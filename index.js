@@ -22,8 +22,14 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'))
 
 app.get('/products', async (req, res) => {
-    const products = await Product.find({}); // find all products
-    res.render('products/index', { products });
+    const { category } = req.query;
+    if (category) {
+        const products = await Product.find({category}); // filter for specific products
+        res.render('products/index', { products, category});
+    } else {
+        const products = await Product.find({}); // find all products
+        res.render('products/index', { products, category: 'All'});
+    }
 })
 
 // Form For New Products

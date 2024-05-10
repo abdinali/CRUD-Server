@@ -27,8 +27,9 @@ app.get('/products', async (req, res) => {
 })
 
 // Form For New Products
-app.get('/products/new', (req, res) => {
-    res.render('products/new'); // render form
+app.get('/products/new', async (req, res) => {
+    const categories = await Product.getCategories();
+    res.render('products/new', {categories}); // render form
 })
 
 // Form Submission
@@ -48,7 +49,8 @@ app.get('/products/:id', async (req, res) => {
 app.get('/products/:id/edit', async (req, res) => {
     const { id } = req.params;
     const selectedProduct = await Product.findById(id);
-    res.render('products/edit', { selectedProduct });
+    const categories = await Product.getCategories();
+    res.render('products/edit', { selectedProduct, categories });
 })
 
 app.put('/products/:id', async (req, res) => {

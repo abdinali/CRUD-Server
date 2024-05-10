@@ -15,25 +15,12 @@
         <input id="price" type="number" name="price" placeholder="price" value="<%= selectedProduct.price %>">
         <br>
         <label for="product-category">Product Category: </label>
-        <% if (selectedProduct.category == 'fruit') { %>
-            <select name="category" id="product-category">
-                <option value="fruit" selected>fruit</option>
-                <option value="vegetable">vegetable</option>
-                <option value="dairy">dairy</option>
-            </select>        
-        <% } else if (selectedProduct.category == 'vegetable') { %>
-            <select name="category" id="product-category">
-                <option value="fruit">fruit</option>
-                <option value="vegetable" selected>vegetable</option>
-                <option value="dairy">dairy</option>
-            </select>          
-        <% } else if (selectedProduct.category == 'dairy') { %>
-            <select name="category" id="product-category">
-                <option value="fruit">fruit</option>
-                <option value="vegetable">vegetable</option>
-                <option value="dairy" selected>dairy</option>
-            </select>           
-        <% } %>
+        <select name="category" id="product-category">
+            <% for (let category of categories) {%>
+                <!-- Adds 'selected' to the option if loop category matches the selected category for edit -->
+                <option value="<%= category %>"<%= category === selectedProduct.category ? 'selected' : '' %>><%= category %></option>
+            <% } %>
+        </select>        
         <br>
         <button>Submit</button>
     </form>

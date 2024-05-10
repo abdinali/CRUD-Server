@@ -17,6 +17,11 @@ const productSchema = new mongoose.Schema({
     }
 })
 
+// Static Method For Retrieving Categories
+productSchema.static('getCategories', function() {
+    return productSchema.paths.category.enumValues;
+})
+
 const Product = mongoose.model('Product', productSchema);
 
 module.exports = Product;
